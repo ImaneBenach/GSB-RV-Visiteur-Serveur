@@ -278,15 +278,34 @@ CREATE TABLE RapportVisite (
   rap_date_visite date NOT NULL,
   rap_bilan varchar(510) DEFAULT '',
   pra_num int(11) DEFAULT NULL,
+  rap_date_redaction date DEFAULT NULL,
+  rap_coeff_confiance int(11) DEFAULT NULL,
+  mo_code int(11) ,
   PRIMARY KEY (vis_matricule,rap_num)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO RapportVisite VALUES
+CREATE TABLE Motif (
+  mo_code int(11) NOT NULL,
+  mo_libelle varchar(30),
+  PRIMARY KEY (mo_code) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO Motif VALUES (1,'m1') ;
+INSERT INTO Motif VALUES (2,'m2') ;
+INSERT INTO Motif VALUES (3,'m3') ;
+
+
+
+INSERT INTO RapportVisite(vis_matricule,rap_num,rap_date_visite,rap_bilan,pra_num) VALUES
 	( 'a131' , 1 , '2018-03-01' , 'RAS' , 22 ) ,
 	( 'a131' , 2 , '2018-04-02' , 'RAS' , 22 ) ,
 	( 'a131' , 3 , '2018-04-03' , 'RAS' , 18 ) ,
 	( 'a131' , 4 , '2018-05-10' , 'RAS' , 22 ) ,
 	( 'a131' , 5 , '2018-05-21' , 'RAS' , 18 ) ;
+	
+insert into RapportVisite values( 'a131' , 6 , '2018-04-02' , 'RAS' , 22 , '2018-04-10' , 2 , 1 ) ;
+insert into RapportVisite values( 'a131' , 7 , '2018-04-03' , 'RAS' , 18 , '2018-04-11' , 1 , 2 ) ;
+insert into RapportVisite values( 'a131' , 8 , '2018-04-04' , 'RAS' , 22 , '2018-04-11' , 3 , 1 ) ;
 
 
 CREATE TABLE Realiser (
